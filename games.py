@@ -1,4 +1,3 @@
-
 import random
 
 print('-' * 50 + " PYTHON GAMES ARENA " + '-' * 50)
@@ -6,18 +5,22 @@ print('-' * 50 + " PYTHON GAMES ARENA " + '-' * 50)
 
 while True:
     print("\n1. Rock Paper Scissors")
-    print("\n2. Guess the Number")
-    print("\n3.quit")
+    print("2. Guess the Number")
+    print("3. Quit")
 
-    choice = int(input("Enter a number: "))
+    try:
+        choice = int(input("Enter a number: "))
+    except:
+        print("Enter a valid number. Not a philosophical concept.")
+        continue
 
     if choice == 1:
-        print("You chose Rock Paper Scissors")
+        print("\nYou chose Rock Paper Scissors")
 
         choices = ["rock", "paper", "scissors"]
         computer = random.choice(choices)
 
-        user = input("Choose rock, paper, or scissors: ").lower()
+        user = input("\nChoose rock, paper, or scissors: ").lower()
 
         wins_against = {
             "rock": "scissors",
@@ -26,41 +29,65 @@ while True:
         }
 
         if user not in choices:
-            print("Invalid input. Try again without inventing new weapons.")
+            print("\nInvalid input. Try again without inventing new weapons.")
             continue
 
-        print("Computer chose:", computer)
+        print("\nComputer chose:", computer)
 
         if user == computer:
-            print("It's a tie")
+            print("\nIt's a tie")
         elif wins_against[user] == computer:
-            print("You win")
+            print("\nYou win")
         else:
-            print("You lose")
-            
-        print("-" * 120)
-    
-    elif choice == 2:
+            print("\nYou lose")
 
-        guess = 3
-        number = random.randint(0,10)
-        print("You have entered the number guessing game")
-        while True:
-           user_guess = int(input("guess a numer between 0 and 10 : "))
-           if user_guess == number:
-               print (" Congratulations you won ")
-               break
-           elif user_guess != number:
-               print("sorry not it try again")
-               guess -= 1
-               print("guesses left " ,guess)
-               if guess == 0:
-                   print(f"Sorry You Lost. The answer was {number}")
-                   print("-" * 120)
-                   break
+        print("-" * 120)
+
+    elif choice == 2:
+        print("\nYou have entered the number guessing game")
+
+        number = random.randint(0, 10)
+        guesses_left = 3
+
+        while guesses_left > 0:
+            try:
+                user_guess = int(input("\nGuess a number between 0 and 10: "))
+            except:
+                print("\nEnter a real number, not vibes.")
+                continue
+
+            if user_guess == number:
+                print("\nCongratulations, you won")
+                break
+            else:
+                print("\nWrong.")
+                if user_guess > number:
+                    print("\nLower")
+                else:
+                    print("\nHigher")
+
+                guesses_left -= 1
+                print("\nGuesses left:", guesses_left)
+
+        if guesses_left == 0:
+            print(f"\nSorry, you lost. The answer was {number}")
+
+        print("-" * 120)
+
     elif choice == 3:
         print("GG")
         break
+
+    else:
+        print("Invalid choice.")
+        
+        
+
+
+
+        
+        
+
 
         
         
